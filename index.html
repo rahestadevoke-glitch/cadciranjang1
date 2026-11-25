@@ -105,6 +105,10 @@ sub { bottom: -0.25em; color: inherit; }
 .math-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; font-size: 0.85em; line-height: 1.1; margin: 0 2px; }
 .math-frac sup, .math-frac sub { font-size: 1em; position: static; line-height: 1; }
 .q-text, .opt-text { line-height: 1.8; }
+.q-text b, .q-text strong { font-weight: 800; }
+.opt-text b, .opt-text strong { font-weight: 700; }
+.q-text i, .q-text em, .opt-text i, .opt-text em { font-style: italic; }
+.q-text u, .opt-text u { text-decoration: underline; text-underline-offset: 2px; }
 
 #splash { position: fixed; inset: 0; z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #140a2b; overflow: hidden; transition: opacity 0.6s ease, transform 0.6s ease; }
 #splash.hide-out { opacity: 0; transform: scale(1.04); pointer-events: none; }
@@ -699,40 +703,40 @@ const GAS_URL_JAWABAN = 'https://script.google.com/macros/s/AKfycbyktcRU3b8pCVaE
    otomatis memakai GAS_URL_JAWABAN sebagai fallback default.
    ═══════════════════════════════════════════════════════ */
 const GAS_URL_JAWABAN_PER_KELAS = {
-  '7A': 'https://script.google.com/macros/s/AKfycbzEVgPj1UtIuQYw_bp4fuC_EGqHYp6Ddwuhpp0swFw2syBGBYxQ3YPAuAaAjV1E1Eva0A/exec',
-  '7B': 'https://script.google.com/macros/s/AKfycbyc1iMHDWQAjZI7Y3S4HzMjIVDp4WQ2-dyWKMmtSlhM9YGSefxM-xQzJAJ7YtWMwlTGFQ/exec',
-  '7C': 'https://script.google.com/macros/s/AKfycbwic8SeZY9mk8Z3vdc_hEjyVhSA0NYJYE9LNv8-vH1_ShtvSb3x_7s5j27toc-qAvhx/exec',
-  '7D': 'https://script.google.com/macros/s/AKfycbwt_a0csblRG0zenXt3jtmLef2fLvki1WYO_VqxxRtDkNg7Lexk7Zxf0mdS_0yW5SH6/exec',
-  '7E': 'https://script.google.com/macros/s/AKfycbxpKRiMoMO1RnEJwWXpWBAVz_cV1pTOhr7Ne76RnsOsfkFUKICajiE-R9hDNN_pHITGfw/exec',
-  '7F': 'https://script.google.com/macros/s/AKfycbw1wiem_Xj_wlBAUkPsNfxiPbn1P4Dgfi5uE7Yj6uBVbgA8maq_ukNtjn5qs3MUyoJDVA/exec',
-  '7G': 'https://script.google.com/macros/s/AKfycbwsvkrbx03-1kgT-YWPAQttE3lpBA9TcU90W40q30abRfxtL0WXuglwEHLMM5j0EIuN0g/exec',
-  '7H': 'https://script.google.com/macros/s/AKfycbwjwJcCbfzYSo6Ec09X-EKS792J5iPcDIuM0rQioRYdQbIFgsFb2nK3neo7jAa9FyOB1Q/exec',
-  '7I': 'https://script.google.com/macros/s/AKfycbyKFVEAdHscHp1lXC2HUuvSbjqvhSxYLc9YIVW0mh0GcEfiLw2J1jf6uMnb0Y7UU70Kow/exec',
-  '7J': 'https://script.google.com/macros/s/AKfycbziymMiwM6s1QuJQ5ST1OSXujLj1vzS6Gdx0E5KnjfzjgTTVUGgTpu8HwVpu5NodnhioQ/exec',
-  '8A': 'https://script.google.com/macros/s/AKfycbw_ZcyOBDmupPhFpIOArZKIYLQQme_HWrMkQg87zgO4cGwpi6GJVPOEJVA0wPVPaP8U/exec',
-  '8B': 'https://script.google.com/macros/s/AKfycbyNTR-F7fe6vlBRHoM6cw0FGppC2GsBKnjarh6hKLJO1NXiatsGBx_KtrVWNIRlXORGIw/exec',
-  '8C': 'https://script.google.com/macros/s/AKfycbxj3hz5cFhG3MtMbtUnWS0euV_NZw1xjOchnwlQkbVnP_Yh9m2Iwif7pOZgcqnZNJb4/exec',
-  '8D': 'https://script.google.com/macros/s/AKfycbw_pcPuj9h1-K-3_VZB3gO1aeu8W3GN4z64VPVrIrvKKLOxI0o3llsSiHldiiRF6ZmqoA/exec',
-  '8E': 'https://script.google.com/macros/s/AKfycbwUvWqpMtJ9yWYTPBoiY1n9rWVt-lWtUfLud64VXrie1DfrEsqevXk_MB9gcU1Aoj80/exec',
-  '8F': 'https://script.google.com/macros/s/AKfycbzGYN61bY-Kgm7OXAWydBH3ACX_FDydg3Ts5O0bCxyS-UlW9zb4W_ZJ6Yb92OhgQCqqrQ/exec',
-  '8G': 'https://script.google.com/macros/s/AKfycbz0u_jA3YdXNgAuniOBBt6Ps3uqG9fdQ_KMHuD-8Hux0RLyKNnZsSd3Fw8OMgTo7PhK/exec',
-  '8H': 'https://script.google.com/macros/s/AKfycbzGPrnBMdQSNXleGtMHPnkQYvQAgqyS9Iu_mclF_MXFy6ymTm-NSbEJfbGfOKGiMNLw/exec',
-  '8I': 'https://script.google.com/macros/s/AKfycbw_Cl0ouVyJBMHRWpEEYuOu2l3L-zZJwHAXhVtOo-OM5B0KmZuUCBoxzuK9xYx1YRZK/exec',
-  '8J': 'https://script.google.com/macros/s/AKfycbwlT8kseLOdGy48WpP_yaWjzRfB8tDk7JWM_E36yEwP2cj9FHJSIcIVHvvglZWvc8WtPA/exec',
-  '9A': 'https://script.google.com/macros/s/AKfycbw9mufOYgn5N5afuYVF36a1-uTrm3XpdwlNXiXax-8j5CPsLzg8oJjcaRAPZAv_AaNE0A/exec',
-  '9B': 'https://script.google.com/macros/s/AKfycby_dNciNV0yqXHRL2OiVN-RNeB6YvHpfPh6YtwMu_U-eYm3HosTDgM4oI7_2aY7A-P_rw/exec',
-  '9C': 'https://script.google.com/macros/s/AKfycbzWEJ0QY6d0YF_UW50NpU4mil7rQFU9P9vPbJumw6r2eoBig4Tp8s72KgQWwTBKfblUTA/exec',
-  '9D': 'https://script.google.com/macros/s/AKfycbyrYwlXupFz6_W1bXVhjAmjM_lumW1ewOME_qgkPhndzh72oKQ1Hq8q-sO6eCK-DWtb/exec',
-  '9E': 'https://script.google.com/macros/s/AKfycbwcjLvFvqIXSsuxeC7boG_t85vqxyYr_aJ3a0y3AGduxhp87KLxTxhv8HIPVHAjpAuZ/exec',
-  '9F': 'https://script.google.com/macros/s/AKfycbzIcqjM7d6hnE4gjyrFGUK5ysxhgpjUObK5oD1ewk20GW41Nic2L5d7V5JgGmWEg6DY/exec',
-  '9G': 'https://script.google.com/macros/s/AKfycbwLdJpwYy00DPJHN7vS0EoNcYnriwebaGJd7BuaN8if5-QJw1v7r9PDAe_daKaZmDBE/exec',
-  '9H': 'https://script.google.com/macros/s/AKfycbwnXvXyRseOBHCqjmPHaKrOZZHpzSXX2Kz6vtv9-lsIeJUrsVCtc4RddDBere4_tPRT/exec',
-  '9I': 'https://script.google.com/macros/s/AKfycbwSwcBerhNB_V965y4Gm_Mfgo141KEkjtCE9z4FGc2fFOwQG_Xs9V45TK94tqk0mi15/exec',
-  '7K': 'https://script.google.com/macros/s/AKfycbwi32Yk6aEb7krc_9AXjXXLVWOqcv9Pfg0b-Nb8Kjahsmwn-MubgXa_s1ZDAC1VroqV/exec',
+  '7A': 'https://script.google.com/macros/s/AKfycbxHQ97K3C0bk_yIXksqJQ0MbdKwo6LxjDblziZHbwiT2f5p5uQkEosJNWSZWaXnQ3ijcg/exec',
+  '7B': 'https://script.google.com/macros/s/AKfycbwSwiGAGBUuHRHr0GzY1NhU6on7vUNZvrcwSwR5JvjrAsYcvpMDPmGQlvxLuoovEs-Z5w/exec',
+  '7C': 'https://script.google.com/macros/s/AKfycbxh044CHGerUBhSaLqZYJU5zFQmYmecHI4PNdsCQknx4WZ_5Q8q_LyFThgOVIoK9g/exec',
+  '7D': 'https://script.google.com/macros/s/AKfycbxORbehxz-OlTEcvSBfUX6ddWfKkQ5xp52bSZf1ijUjUR2AkJLIbrGfaPnaAGKt0xjL/exec',
+  '7E': 'https://script.google.com/macros/s/AKfycbxw5vGYJhV9YcK_r0xW0JmqvM47Buw7b_X4X5YfhPIF3niTQcIYLfAKjqIDlExaWfM6Ug/exec',
+  '7F': 'https://script.google.com/macros/s/AKfycbwjHlbZiscal9nPjIAGyFxUZv3CVM2SGKzwG0WwI1VHex32IaeyO5oNfZErIzFBGW0ZDA/exec',
+  '7G': 'https://script.google.com/macros/s/AKfycbxc7qgpLBD-BMjnfTKynN52h45zdwGx_s51WKQ3n3sZPTYsLvgdV_DpklUzkx07Bj_ABg/exec',
+  '7H': 'https://script.google.com/macros/s/AKfycbyfMsRjduzYbdAVqh1NID24N7aKEq7O_m7u2ZfPaAIvqLHsSnIH-zWJbIWdaONmDcP7PQ/exec',
+  '7I': 'https://script.google.com/macros/s/AKfycbwLlzQeJyx6dtEk2jHdjfPcGHK2TcTNbUzCCFwvij1Jj6shZSUrJEJnM6K0uxshasjeYA/exec',
+  '7J': 'https://script.google.com/macros/s/AKfycbz7Yf0x9ZJuMm_XNjotn4_OsN-CAFGZDKIpdoMyegGtgzDhSvMA0sB2QXqg7v_zYqoTcg/exec',
+  '8A': 'https://script.google.com/macros/s/AKfycbxCYhz0a3qN83SlGM1fX54bXgjIoUD897duTbVKDj42yzcgn1hV9g-tZIbnQywBj4LE/exec',
+  '8B': 'https://script.google.com/macros/s/AKfycbxLfC9cu7elipChxm4CSLU93O4hwL3Rc2nJ2haoexrQQ58tUEf-2I6c538OAmyEj-NiYA/exec',
+  '8C': 'https://script.google.com/macros/s/AKfycbzfCrJJuq3CsD_taE4ho3-A8Dd5ke-klm2GgYe4Q3_4qbv8ftCuKnxAAf6iSmgR0fUC/exec',
+  '8D': 'https://script.google.com/macros/s/AKfycbwncMS3Y8Ytwu-RXHLftCp4jvyTM43V6d7taEmlKEF8R3yQ4EYAlusH7yn8VbFcSEK38A/exec',
+  '8E': 'https://script.google.com/macros/s/AKfycbw-RZ5HA1B50f7eKwldulfrEu3Fz4-HJryVqvUmoQTOg8AKwQWzvcIacAILTXgcDz7pzQ/exec',
+  '8F': 'https://script.google.com/macros/s/AKfycbxXfF6lFFv2NOi-gbYNE3tdeKrnQUaj_FHbaKGadcjRYftkt2zHoj7VNpopcvEQiKSQ/exec',
+  '8G': 'https://script.google.com/macros/s/AKfycbxsZFDIIPEKAQ5EAkIur4mlun5TEmAVBx9qhecDZclz0hBB6BppRX27lFhMbkKZkH5few/exec',
+  '8H': 'https://script.google.com/macros/s/AKfycbw9-Wc-TzVmEiQyVewyi5tYQpCN3oEvytxlAj_fNiposVbkHXmGhRNukTEw5t9GgNcQ/exec',
+  '8I': 'https://script.google.com/macros/s/AKfycby9do2JBdjszd1aOI8DKtLHgvRNrpW27L4rkzJy1zfGfcGnrPvDuZ8UqZaM9sPoee_s/exec',
+  '8J': 'https://script.google.com/macros/s/AKfycbxjP-ZU-KhhUA5az6VY_xV-Y5_inCv0ejXqUTwQO9lb0XUxmCVc5vreZIGm-AdL8a6Aiw/exec',
+  '9A': 'https://script.google.com/macros/s/AKfycbwrLgGHYclhTTseeuORCnCejbWqEu6_bHzvCe60kqPFzaXGOpTXwKWrIVIRW6vgAArj_w/exec',
+  '9B': 'https://script.google.com/macros/s/AKfycbySYzH-y5inGMK-PP48l6pKpkXrvvjMT8ztcNwv1e_oL-8sSkHX7G_EdQcOhy15M7gdbg/exec',
+  '9C': 'https://script.google.com/macros/s/AKfycbxkliUw2G6Vj2wMvaS8Y5-XkQMdL1lmsHIuRKQzU1vK5ArWZLJ7E7lBWQw30eV7hRoPNQ/exec',
+  '9D': 'https://script.google.com/macros/s/AKfycbyJWo-aSnsJQE6OM054367qBZXNKcBMmey_CZfP6omXz1O1LdiNPjLB4k8G7Y2iULdp/exec',
+  '9E': 'https://script.google.com/macros/s/AKfycbxN4PH1UpYwfIz7E5T6CsK4RXQCheX8x98DKodre7gZxa2xIVB6vZN0TGZX412Mm0JJ/exec',
+  '9F': 'https://script.google.com/macros/s/AKfycbz5Bh-X1m3SnanUUkJZrySgyejPgSNXbrLgOdS2N0cwIfXE-Sy9g_WQDnoOIyrCT2FR/exec',
+  '9G': 'https://script.google.com/macros/s/AKfycbwZDxZyLW4LsCFFJ0pOxWWUqqkGKq5_5cFLhw-B85ADV76bLAQrmI6hD8oRHOAOUsLT/exec',
+  '9H': 'https://script.google.com/macros/s/AKfycbyEt238195Z7DgKHnUzhwXOO-sw7Jzk8SWO0N8JzkCowZq0XxwGW4C6q0DA2o1u6tka/exec',
+  '9I': 'https://script.google.com/macros/s/AKfycbzLe-gTV5Ego1WTJRdcEcPyurAnEpJN_sxP_qfij8L5AMJ7-IGiCYoB2LE3z6h_gOvS/exec',
+  '7K': 'https://script.google.com/macros/s/AKfycbzRCEpTOalD1MpFnQCzPv52kEgWrFr4j5n-Omx8M2_IBQw1eY0VS0p6mcdJHKL3Xl2L/exec',
   '8K': 'https://script.google.com/macros/s/AKfycbxWB2NCCbw3b4DFEvidgSjGDytP8FN4b_jufAEgnpStI15ReyGwWF5toFO9hv41KASqtA/exec',
   '9K': 'https://script.google.com/macros/s/AKfycbws5CUcfTfA4GzRxcdPLCsu8b4MlEPvGNqaYpD8u2SGbv8akq6PTvX1wkDSuamddgmF0Q/exec',
   '10A': 'https://script.google.com/macros/s/AKfycbzE6uw2cpO3c_zA5fPt_XogU6_myQy_eE2Rss-3h3yBRLJ7kJtSkqSdCvorKlfgnLRFXg/exec',
-  '9J': 'https://script.google.com/macros/s/AKfycbzgXSzojgeyu_ukLFTVCLhkV0cMfiUCDn-ygrDtTf0Epo9ce3T6zGSVEi5JI0imz8qZ/exec',
+  '9J': 'https://script.google.com/macros/s/AKfycbw0HaesXL63dqEVSqjFvsVTKutEjZLzphg0Kyxamth6e_Vbf6vG2jpXFnr8h7PY20aT/exec',
 };
 
 /* Normalisasi teks kelas agar cocok dengan key di GAS_URL_JAWABAN_PER_KELAS.
@@ -765,6 +769,18 @@ function applyStaticLogo() {
 }
 
 /* ═══════════════ CACHE SYSTEM ═══════════════ */
+/* ── Anti kirim ganda: tanda "sudah terkirim" di browser (tidak ikut terhapus tombol hapus cache) ── */
+let passwordMulaiAktif = '';
+function doneKey(no, kode, pwd) { return 'exam_done_' + [no, kode, pwd].map(v => String(v || '').trim().toLowerCase()).join('|'); }
+function sudahTerkirim(no, kode, pwd) {
+  if (!no || no === '-') return false;
+  try { return localStorage.getItem(doneKey(no, kode, pwd)) !== null; } catch (_) { return false; }
+}
+function tandaiTerkirim(no, kode, pwd) {
+  if (!no || no === '-') return;
+  try { localStorage.setItem(doneKey(no, kode, pwd), String(Date.now())); } catch (_) {}
+}
+
 const CACHE_VERSION = 'v3';
 const CACHE_TTL = { cover:86400000, logo:604800000, mapel:900000, image:259200000, session:86400000 };
 function cacheSet(key, data, ttl) {
@@ -1072,6 +1088,11 @@ async function mulaiUjian() {
   const password = document.getElementById('pass-mulai').value;
   if (!password) return toast('warn', 'Password Kosong', 'Masukkan password mulai dari pengawas.');
   const no = siswaAktif['no peserta'] || '';
+  if (sudahTerkirim(no, kode, password)) {
+    cacheRemove(sessionKey(no, kode));
+    return toast('error', 'Ditolak', 'Data dengan No Peserta, Kode Mapel, dan Password yang sama sudah pernah terkirim.', 6000);
+  }
+  passwordMulaiAktif = password;
   const savedSesi = loadSession(no, kode);
   if (savedSesi && savedSesi.soalList && savedSesi.soalList.length > 0) {
     const answered = Object.keys(savedSesi.jawaban || {}).length, total = savedSesi.soalList.length;
@@ -1185,10 +1206,25 @@ function acakSoal(list) {
    dikonversi ke simbol Unicode sederhana lewat parseMath(). */
 const MATH_SEG_RE = /(?<!\\)\$\$([\s\S]+?)\$\$|\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)|(?<!\\)\$((?:\\.|[^$\\\n])+?)\$/g;
 
+/* Format teks: **tebal**, *miring*, ***tebal miring***, __garis bawah__
+   (juga \\textbf{}, \\textit{}, \\emph{}, \\underline{} di luar rumus).
+   Tag HTML <b> <i> <u> <strong> <em> tetap berfungsi seperti biasa.
+   Aman untuk perkalian (2*3*4) dan isian kosong (______). */
+function fmtInline(s) {
+  return s
+    .replace(/(?<![\w*])\*\*\*(?=[^\s*])([^\n]+?)(?<=[^\s*])\*\*\*(?![\w*])/g, '<b><i>$1</i></b>')
+    .replace(/(?<![\w*])\*\*(?=[^\s*])([^\n]+?)(?<=[^\s*])\*\*(?![\w*])/g, '<b>$1</b>')
+    .replace(/(?<![\w*])\*(?=[^\s*])([^\n*]+?)(?<=[^\s*])\*(?![\w*])/g, '<i>$1</i>')
+    .replace(/(?<![\w_])__(?=[^\s_])([^\n]+?)(?<=[^\s_])__(?![\w_])/g, '<u>$1</u>');
+}
+
 function rawToHtmlPlain(s) {
   s = String(s || '').replace(/\\\$/g, '\x01');
-  return parseMath(s)
-    .replace(/&(?!amp;|lt;|gt;|quot;|#)/g, '&amp;')
+  s = s.replace(/\\textbf\{([^{}]*)\}/g, '**$1**')
+       .replace(/\\(?:textit|emph)\{([^{}]*)\}/g, '*$1*')
+       .replace(/\\underline\{([^{}]*)\}/g, '__$1__');
+  return fmtInline(parseMath(s)
+    .replace(/&(?!amp;|lt;|gt;|quot;|#)/g, '&amp;'))
     .replace(/\n/g, '<br>')
     .replace(/\x01/g, '$');
 }
@@ -1425,6 +1461,7 @@ async function prosesSelesai() {
 
   // 2. Siapkan payload + simpan sebagai "pending" agar tidak hilang bila halaman tertutup / reload
   const pending = {
+    pwdMulai: passwordMulaiAktif,
     gasUrlTujuan,
     nama: siswaAktif['nama'] || '',
     nilai, benar, total,
@@ -1499,6 +1536,7 @@ async function kirimHasilSampaiBerhasil(pending) {
   }
 
   // Berhasil — baru sekarang bersihkan data lokal & munculkan tombol Selesai
+  tandaiTerkirim(pending.params.noPeserta, pending.params.kodeMapel, pending.pwdMulai);
   try { localStorage.removeItem(PENDING_KEY); } catch (_) {}
   clearSession();
   window.removeEventListener('beforeunload', _guardUnload);
