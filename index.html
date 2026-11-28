@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Ujian Online — Sistem Ujian Digital</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Cormorant+Garamond:wght@600;700&family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -433,6 +433,12 @@ body { background: radial-gradient(900px 500px at 100% 0%, rgba(20,184,166,.10),
 ::selection { background: rgba(212,175,55,.35); }
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { #splash::after, .splash-inner::before, .cover-banner::after, .cover-banner::before { animation: none; } }
+/* ===== Teks Arab ===== */
+:root { --font-arab: 'Amiri', 'Scheherazade New', 'Noto Naskh Arabic', 'Traditional Arabic', 'Arabic Typesetting', serif; }
+.ar { font-family: var(--font-arab); font-size: 1.4em; font-weight: 400; line-height: 2; direction: rtl; unicode-bidi: isolate; }
+b .ar, strong .ar { font-weight: 700; }
+.ar-block { display: block; text-align: right; width: 100%; }
+.opt-text { flex: 1; min-width: 0; }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
       onerror="this.onerror=null;this.href='https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css'">
@@ -1222,15 +1228,24 @@ function fmtInline(s) {
     .replace(/(?<![\w_])__(?=[^\s_])([^\n]+?)(?<=[^\s_])__(?![\w_])/g, '<u>$1</u>');
 }
 
+const AR_CH = '\\u0600-\\u06FF\\u0750-\\u077F\\u08A0-\\u08FF\\uFB50-\\uFDFF\\uFE70-\\uFEFF';
+const AR_RUN_RE = new RegExp('[' + AR_CH + ']+(?:[ \\u00A0\\u200C\\u200F\\d.,:;()!?\\u060C\\u061B\\u061F\\u00AB\\u00BB\\-]*[' + AR_CH + ']+)*', 'g');
+const AR_ONLY_RE = new RegExp('^[\\s\\d.,:;()!?\\u060C\\u061B\\u061F\\u00AB\\u00BB\\-\\u200C\\u200F' + AR_CH + ']+$');
+function wrapArabic(html, raw) {
+  if (!new RegExp('[' + AR_CH + ']').test(html)) return html;
+  const block = AR_ONLY_RE.test(String(raw || '').trim()) ? ' ar-block' : '';
+  return html.replace(AR_RUN_RE, m => '<span class="ar' + block + '" dir="rtl" lang="ar">' + m + '</span>');
+}
 function rawToHtmlPlain(s) {
   s = String(s || '').replace(/\\\$/g, '\x01');
   s = s.replace(/\\textbf\{([^{}]*)\}/g, '**$1**')
        .replace(/\\(?:textit|emph)\{([^{}]*)\}/g, '*$1*')
        .replace(/\\underline\{([^{}]*)\}/g, '__$1__');
-  return fmtInline(parseMath(s)
+  const _raw = s;
+  return wrapArabic(fmtInline(parseMath(s)
     .replace(/&(?!amp;|lt;|gt;|quot;|#)/g, '&amp;'))
     .replace(/\n/g, '<br>')
-    .replace(/\x01/g, '$');
+    .replace(/\x01/g, '$'), _raw);
 }
 
 function renderTex(tex, display, original) {
